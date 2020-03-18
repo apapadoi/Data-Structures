@@ -1,5 +1,6 @@
 #include "stack.h"
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
 template <typename T,int STACK_SIZE>
@@ -35,6 +36,7 @@ bool stack<T,STACK_SIZE>::push(T pushedValue)
     if( this->isFull() )
     {
         T*temporaryPointer=new T[2*ARRAY_SIZE];
+        ARRAY_SIZE*=2;
         if(!temporaryPointer)
         {
             cout<<"Error while allocating memory for extra space in push method!"<<endl<<endl;
@@ -60,6 +62,7 @@ bool stack<T,STACK_SIZE>::pop(T &poppedValue)
     if( this->isEmpty() )
     {
         T*temporaryPointer= new T [ARRAY_SIZE/2];
+        ARRAY_SIZE/=2;
         if(!temporaryPointer)
         {
             cout<<"Error while reducing memory in pop method!"<<endl<<endl;
@@ -71,12 +74,13 @@ bool stack<T,STACK_SIZE>::pop(T &poppedValue)
     }
     
     //there is a value to pop
-    float occupancyFactor=top/(sizeof(int)*ARRAY_SIZE);//we calculate the occupancy factor "after" the array[top] has 
-                                                         //been popped and then we compare it with 1/4 
+    float occupancyFactor=((float)top)/(sizeof(int)*ARRAY_SIZE);//we calculate the occupancy factor "after" the array[top] has 
+                                                                //been popped and then we compare it with 1/4 
     if( occupancyFactor<=1/4 )
     {
         poppedValue=array[top--];
         T*temporaryPointer=new T [ARRAY_SIZE/2];
+        ARRAY_SIZE/=2;
         if(!temporaryPointer)
         {
             cout<<"Error while reducing memory in pop method!"<<endl<<endl;
