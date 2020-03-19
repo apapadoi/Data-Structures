@@ -74,7 +74,7 @@ bool stack<T,STACK_SIZE>::pop(T &poppedValue)
     }
     
     //there is a value to pop
-    float occupancyFactor=((float)top)/(sizeof(int)*ARRAY_SIZE);//we calculate the occupancy factor "after" the array[top] has 
+    float occupancyFactor=((float)top)/ARRAY_SIZE;//we calculate the occupancy factor "after" the array[top] has 
                                                                 //been popped and then we compare it with 1/4 
     if( occupancyFactor<=1/4 )
     {
