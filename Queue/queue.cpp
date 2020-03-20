@@ -6,7 +6,10 @@ template <typename T,int QUEUE_SIZE>
 queue<T,QUEUE_SIZE>::queue()
 {
     finish=-1;
-    ARRAY_SIZE=QUEUE_SIZE;
+    if(QUEUE_SIZE>0)
+        ARRAY_SIZE=DEFAULT_QUEUE_SIZE;
+    else
+        ARRAY_SIZE=10;
     array=new T [ARRAY_SIZE];
 }
 
@@ -73,8 +76,16 @@ bool queue<T,QUEUE_SIZE>::dequeue(T &dequeuedValue)
     }
 
     //there is a value to dequeue
-    float occupancyFactor=((float)finish)/ARRAY_SIZE;//calculating the occupancy factor "after" the array[finish] has
+    float occupancyFactor=2.5;
+	if(ARRAY_SIZE)
+		occupancyFactor=((float)finish)/ARRAY_SIZE;//calculating the occupancy factor "after" the array[finish] has
                                                      //been dequeued and then we compare it with 1/4
+    else
+    {
+        cout<<"Wrong ARRAY_SIZE file:queue.cpp "<<endl;
+        return false;
+    }
+
     if( occupancyFactor<=1/4 )
     {
         dequeuedValue=array[0];

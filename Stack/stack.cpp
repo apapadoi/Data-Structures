@@ -7,7 +7,10 @@ template <typename T,int STACK_SIZE>
 stack<T,STACK_SIZE>::stack()
 {
     top=-1;
-    ARRAY_SIZE=STACK_SIZE;
+    if(STACK_SIZE>0)
+        ARRAY_SIZE=STACK_SIZE;
+    else
+        ARRAY_SIZE=DEFAULT_STACK_SIZE;
     array=new T [ARRAY_SIZE];
 }
 
@@ -74,8 +77,16 @@ bool stack<T,STACK_SIZE>::pop(T &poppedValue)
     }
     
     //there is a value to pop
-    float occupancyFactor=((float)top)/ARRAY_SIZE;//we calculate the occupancy factor "after" the array[top] has 
+    float occupancyFactor;
+    if(ARRAY_SIZE)
+        occupancyFactor=((float)top)/ARRAY_SIZE;//we calculate the occupancy factor "after" the array[top] has 
                                                                 //been popped and then we compare it with 1/4 
+    else
+    {
+        cout<<"Wrong ARRAY_SIZE file: stack.cpp"<<endl;
+        return false;
+    }
+    
     if( occupancyFactor<=1/4 )
     {
         poppedValue=array[top--];

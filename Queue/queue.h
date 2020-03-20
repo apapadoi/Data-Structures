@@ -1,5 +1,8 @@
 #ifndef QUEUE_H
 #define QUEUE_H
+
+#define DEFAULT_QUEUE_SIZE 10
+
 template <typename T,int QUEUE_SIZE>
 class queue
 {

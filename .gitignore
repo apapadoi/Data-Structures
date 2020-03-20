@@ -1,8 +1,6 @@
-test.o
-Makefile.win
-stack.o
-TestStack.dev
-TestStack.exe
-TestStack.layout
-Stack Application 1
-Stack Application 2
+#ignoring objective files,executable files and devc++ project files and configuration files
+*.o
+*.dev
+*.exe
+*.layout
+*.win

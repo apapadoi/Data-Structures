@@ -3,11 +3,13 @@
 #include "stack.cpp"
 using std::cout;
 
+#define TEST_LIMIT_NUMBER 100000
+
 int main()
 {
-	stack<int,1500000> testStack1;
-	stack<float,1500000> testStack2;
-	stack<int,2> testStack3;
+	stack<int,0> testStack1;
+	stack<float,0> testStack2;
+	stack<int,0> testStack3;
 
 	/*========= Test 1 ======================
 		stack<int,100> testStack;
@@ -20,7 +22,7 @@ int main()
 
 
 	//================Test 2 =====================
-	for(int i=0;i<1500000;i++)
+	for(int i=0;i<TEST_LIMIT_NUMBER;i++)
 	{
 		int tempVariable=0;
 		if(testStack1.push(i))
