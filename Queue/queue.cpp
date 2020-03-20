@@ -7,17 +7,16 @@ queue<T,QUEUE_SIZE>::queue()
 {
     finish=-1;
     if(QUEUE_SIZE>0)
-        ARRAY_SIZE=DEFAULT_QUEUE_SIZE;
+        ARRAY_SIZE=QUEUE_SIZE;
     else
-        ARRAY_SIZE=10;
+        ARRAY_SIZE=DEFAULT_QUEUE_SIZE;
     array=new T [ARRAY_SIZE];
 }
 
 template <typename T,int QUEUE_SIZE>
 queue<T,QUEUE_SIZE>::~queue()
 {
-    if(array)
-        delete [] array;
+    delete [] array;
 }
 
 template <typename T,int QUEUE_SIZE>

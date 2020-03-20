@@ -17,8 +17,7 @@ stack<T,STACK_SIZE>::stack()
 template <typename T,int STACK_SIZE>
 stack<T,STACK_SIZE>::~stack()
 {
-    if(array)
-        delete [] array;
+    delete [] array;
 }
 
 template <typename T,int STACK_SIZE>
