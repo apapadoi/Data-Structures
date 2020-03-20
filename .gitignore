@@ -1,8 +1,8 @@
 test.o
 Makefile.win
 stack.o
-TestStackProject.dev
-TestStackProject.exe
-TestStackProject.layout
+TestStack.dev
+TestStack.exe
+TestStack.layout
 Stack Application 1
 Stack Application 2
