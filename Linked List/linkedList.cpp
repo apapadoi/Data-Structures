@@ -1,4 +1,5 @@
 #include "linkedList.h"
+#include "node.cpp"
 #include <iostream>
 using namespace std;
 
@@ -12,7 +13,7 @@ template <typename T>
 linkedList<T>::~linkedList()
 {
     node<T>*current;
-
+    //cout<<head;
     while(head!=NULL)
     {
         current=head;
@@ -51,14 +52,22 @@ bool linkedList<T>::insertAfter(const T &previousElement,const T &new_element)
         cout<<"Error while allocating memory for new node in insertAfter method"<<endl;
         return false;
     }
-
+    
     node<T>* current=head;
+    
+    if( this->isEmpty() )
+    {
+        head=newNode;
+        return true;
+    }
+
     while( (current->data) != previousElement )
     {
         if( !(current->next) )
             break;
         current=current->next;
     }
+    
     newNode->next=current->next;
     current->next=newNode;
     return true;
@@ -74,6 +83,12 @@ bool linkedList<T>::insertEnd(const T &new_element)
         return false;
     } 
 
+    if( this->isEmpty() )
+    {
+        head=newNode;
+        return true;
+    }
+
     node<T>* current=head;
     while( (current->next) != NULL )
         current=current->next;
@@ -85,7 +100,7 @@ bool linkedList<T>::insertEnd(const T &new_element)
 template <typename T>
 bool linkedList<T>::deleteStart(T &deletedElement)
 {
-    if( !head )
+    if( !head )// this->isEmpty()
         return false;
 
     node<T>* current=head;
@@ -113,11 +128,11 @@ bool linkedList<T>::deleteAfter(const T &previousElement,T &deletedElement)
     node<T>* previous=head;
     while( (previous->data) != previousElement )
     {
+        previous=previous->next;
         if( !(previous->next) )
             return false;
-        previous=previous->next;
     }
-    
+
     node<T>* current=previous->next;
     deletedElement=current->data;
     previous->next=current->next;
@@ -131,9 +146,9 @@ bool linkedList<T>::deleteAfter(const T &previousElement)
     node<T>* previous=head;
     while( (previous->data) != previousElement )
     {
+        previous=previous->next;
         if( !(previous->next) )
             return false;
-        previous=previous->next;
     }
     
     node<T>* current=previous->next;
@@ -205,7 +220,27 @@ void linkedList<T>::print() const
 
     while( current!=NULL )
     {
-        cout<<current->data;
+        //cout<<"print"<<endl;
+        cout<<current->data<<endl;
         current=current->next;
+    }
+}
+
+template <typename T>
+bool linkedList<T>::getData(int elementIndex,T &element) const
+{
+    if(elementIndex<0)
+        return false;
+    else
+    {
+        node<T>*current=head;
+        for(int i=0;i<elementIndex;i++)
+        {
+            current=current->next;
+            if( !current )
+                return false;
+        }
+        element= current->data;
+        return true;
     }
 }

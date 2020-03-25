@@ -1,6 +1,8 @@
-#ignoring objective files,executable files and devc++ project files and configuration files
+#ignoring objective files,executable files and devc++ project files,configuration and json files and .vscode folder
 *.o
 *.dev
 *.exe
 *.layout
 *.win
+*.json
+.vscode

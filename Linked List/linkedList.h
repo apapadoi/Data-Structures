@@ -9,7 +9,6 @@ class linkedList
         linkedList();
         ~linkedList();
         bool isEmpty() const;
-        //T getData(node* searchingElementPointer) const;
         bool insertStart(const T &new_element);
         bool insertAfter(const T &previousElement,const T &new_element);
         bool insertEnd(const T &new_element);
@@ -21,6 +20,7 @@ class linkedList
         bool deleteEnd(T &deletedElement);
         bool deleteEnd();
         void print() const;
+        bool getData(int elementIndex,T &element) const;
     private:
         node<T> *head;
 };
