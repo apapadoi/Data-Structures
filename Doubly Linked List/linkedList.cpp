@@ -1,5 +1,6 @@
 #include "linkedList.h"
-#include "node.cpp"
+#include "doublyNode.h"
+#include "doublyNode.cpp"
 #include <iostream>
 using namespace std;
 
@@ -12,7 +13,7 @@ linkedList<T>::linkedList()
 template <typename T>
 linkedList<T>::~linkedList()
 {
-    node<T>*current;
+    doublyNode<T>*current;
     //cout<<head;
     while(head!=NULL)
     {
@@ -31,7 +32,7 @@ bool linkedList<T>::isEmpty() const
 template <typename T>
 bool linkedList<T>::insertStart(const T &new_element)
 {
-    node<T>* newNode=new node<T>(new_element);
+    doublyNode<T>* newNode=new doublyNode<T>(new_element);
     if(!newNode)
     {
         cout<<"Error while allocating memory for a new node in insertStart method"<<endl;
@@ -46,14 +47,14 @@ bool linkedList<T>::insertStart(const T &new_element)
 template <typename T>
 bool linkedList<T>::insertAfter(const T &previousElement,const T &new_element)
 {
-    node<T>* newNode=new node<T>(new_element);
+    doublyNode<T>* newNode=new doublyNode<T>(new_element);
     if(!newNode)
     {
         cout<<"Error while allocating memory for new node in insertAfter method"<<endl;
         return false;
     }
     
-    node<T>* current=head;
+    doublyNode<T>* current=head;
     
     if( this->isEmpty() )
     {
@@ -76,7 +77,7 @@ bool linkedList<T>::insertAfter(const T &previousElement,const T &new_element)
 template <typename T>
 bool linkedList<T>::insertEnd(const T &new_element)
 {
-    node<T>* newNode=new node<T>(new_element);
+    doublyNode<T>* newNode=new doublyNode<T>(new_element);
     if(!newNode)
     {
         cout<<"Error while allocating memory for new node in insertEnd method!"<<endl;
@@ -89,7 +90,7 @@ bool linkedList<T>::insertEnd(const T &new_element)
         return true;
     }
 
-    node<T>* current=head;
+    doublyNode<T>* current=head;
     while( (current->next) != NULL )
         current=current->next;
 
@@ -103,7 +104,7 @@ bool linkedList<T>::deleteStart(T &deletedElement)
     if( !head )// this->isEmpty()
         return false;
 
-    node<T>* current=head;
+    doublyNode<T>* current=head;
     deletedElement=current->data;
     head=head->next;
     delete current;
@@ -116,7 +117,7 @@ bool linkedList<T>::deleteStart()
     if( !head )
         return false;
 
-    node<T>* current=head;
+    doublyNode<T>* current=head;
     head=head->next;
     delete current;
     return true;
@@ -125,7 +126,7 @@ bool linkedList<T>::deleteStart()
 template <typename T>
 bool linkedList<T>::deleteAfter(const T &previousElement,T &deletedElement)
 {
-    node<T>* previous=head;
+    doublyNode<T>* previous=head;
     while( (previous->data) != previousElement )
     {
         previous=previous->next;
@@ -133,7 +134,7 @@ bool linkedList<T>::deleteAfter(const T &previousElement,T &deletedElement)
             return false;
     }
 
-    node<T>* current=previous->next;
+    doublyNode<T>* current=previous->next;
     deletedElement=current->data;
     previous->next=current->next;
     delete current;
@@ -143,7 +144,7 @@ bool linkedList<T>::deleteAfter(const T &previousElement,T &deletedElement)
 template <typename T>
 bool linkedList<T>::deleteAfter(const T &previousElement)
 {
-    node<T>* previous=head;
+    doublyNode<T>* previous=head;
     while( (previous->data) != previousElement )
     {
         previous=previous->next;
@@ -151,7 +152,7 @@ bool linkedList<T>::deleteAfter(const T &previousElement)
             return false;
     }
     
-    node<T>* current=previous->next;
+    doublyNode<T>* current=previous->next;
     previous->next=current->next;
     delete current;
     return true;
@@ -162,9 +163,9 @@ bool linkedList<T>::_delete(const T &element)
 {
     if( this->isEmpty() )
         return false;
-        
-    node<T>* current=head;
-    node<T>** previous=&head;
+    
+    doublyNode<T>* current=head;
+    doublyNode<T>** previous=&head;
     while( (current->data) != element)
     {
         if( !(current->next) )
@@ -184,8 +185,8 @@ bool linkedList<T>::deleteEnd(T &deletedElement)
     if( this->isEmpty() )
         return false;
 
-    node<T>*current=head;
-    node<T>** previous=&head;
+    doublyNode<T>*current=head;
+    doublyNode<T>** previous=&head;
     while( (current->next) != NULL )
     {
         previous=&(current->next);
@@ -203,8 +204,8 @@ bool linkedList<T>::deleteEnd()
     if( this->isEmpty() )
         return false;
 
-    node<T>*current=head;
-    node<T>** previous=&head;
+    doublyNode<T>*current=head;
+    doublyNode<T>** previous=&head;
     while( (current->next) != NULL )
     {
         previous=&(current->next);
@@ -219,12 +220,12 @@ bool linkedList<T>::deleteEnd()
 template <typename T>
 void linkedList<T>::print() const
 {
-    node<T>*current=head;
+    doublyNode<T>*current=head;
 
     while( current!=NULL )
     {
         //cout<<"print"<<endl;
-        cout<<current->data<<endl;
+        cout<<current->data<<" ";
         current=current->next;
     }
 }
@@ -236,7 +237,7 @@ bool linkedList<T>::getData(int elementIndex,T &element) const
         return false;
     else
     {
-        node<T>*current=head;
+        doublyNode<T>*current=head;
         for(int i=0;i<elementIndex;i++)
         {
             current=current->next;
