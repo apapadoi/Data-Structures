@@ -4,7 +4,7 @@
 **Occupancy factor:** Given an array of size N ( For instance if the array's elements are integers then the memory   
 allocated for this structure is sizeof(int)*N depending the architecture and the operating system of the computer ) suppose we really use k positions of the total array's N positions.Then we define the occupancy factor as the fraction k/N.Whenever we delete or insert an element in the structure which is implemented with this type of array we act as below:
                     
-Insert:Whenever we insert an element if the structure is not full we just do the insertion.Otherwise we double up the positions    ( N ) of the array.
+Insert:Whenever we insert an element if the structure is not full we just do the insertion.Otherwise we double up the positions (N)   of the array.
 
 Delete:If after the deletion the occupancy factor is greater ( > ) than 0.25 we just do the deletion.Otherwise we reduce the positions ( N ) of the array by 1/2 ( so the new N is equal to previous N/2 )
 
