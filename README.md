@@ -2,12 +2,13 @@
 
 ## **Useful Definitions:**
 **Occupancy factor:** Given an array of size N ( For instance if the array's elements are integers then the memory   
-                      allocated for this structure is sizeof(int)*N depending the architecture and the operating system of the computer ) suppose we really use k positions of the total array's N positions.Then we define the occupancy factor as the fraction k/N.Whenever we delete or insert an element in the structure which is implemented with this type of array we act as below:
+allocated for this structure is sizeof(int)*N depending the architecture and the operating system of the computer ) suppose we really use k positions of the total array's N positions.Then we define the occupancy factor as the fraction k/N.Whenever we delete or insert an element in the structure which is implemented with this type of array we act as below:
                     
-                      Insert:Whenever we insert an element if the structures is not full we just do the insertion.Otherwise we double up the positions ( N ) of the array.
-                      Delete:If after the deletion the occupancy factor is greater ( > ) than 0.25 we just do the deletion.Otherwise we reduce the positions ( N ) of the array by 1/2 ( so the new N is equal to previous N/2 )
+Insert:Whenever we insert an element if the structure is not full we just do the insertion.Otherwise we double up the positions ( N ) of the array.
 
-                      In conclusion,in this way we keep the occupancy factor greater than 0.25 and we achieve a more efficient way of memory usage.
+Delete:If after the deletion the occupancy factor is greater ( > ) than 0.25 we just do the deletion.Otherwise we reduce the positions ( N ) of the array by 1/2 ( so the new N is equal to previous N/2 )
+
+In conclusion,in this way we keep the occupancy factor greater than 0.25 and we achieve a more efficient way of memory usage.
 
 ## **Stack Data Structure:**
 If you want to use the stack implementation code you should include both stack.h and stack.cpp files inside your client  .cpp file so the compiler and the linker can find the implementation of the class stack because I use a template for this class so it can be used for every element of any data type.Also the template works with every input in the STACK_SIZE parameter.If the STACK_SIZE is less or equal than zero then I construct by default a stack with size equal to ten.You can change that by changing the value of #define macro inside the stack.h file.
