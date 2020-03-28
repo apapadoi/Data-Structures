@@ -86,7 +86,7 @@ bool stack<T,STACK_SIZE>::pop(T &poppedValue)
         return false;
     }
     
-    if( occupancyFactor<=1/4 )
+    if( occupancyFactor<= 1/4.0 )
     {
         poppedValue=array[top--];
         T*temporaryPointer=new T [ARRAY_SIZE/2];

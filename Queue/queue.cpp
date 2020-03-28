@@ -75,7 +75,7 @@ bool queue<T,QUEUE_SIZE>::dequeue(T &dequeuedValue)
     }
 
     //there is a value to dequeue
-    float occupancyFactor=2.5;
+    float occupancyFactor;
 	if(ARRAY_SIZE)
 		occupancyFactor=((float)finish)/ARRAY_SIZE;//calculating the occupancy factor "after" the array[finish] has
                                                      //been dequeued and then we compare it with 1/4
@@ -85,7 +85,7 @@ bool queue<T,QUEUE_SIZE>::dequeue(T &dequeuedValue)
         return false;
     }
 
-    if( occupancyFactor<=1/4 )
+    if( occupancyFactor<=1/4.0 )
     {
         dequeuedValue=array[0];
         T*temporaryPointer=new T [ARRAY_SIZE/2];
