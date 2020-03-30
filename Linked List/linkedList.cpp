@@ -125,6 +125,9 @@ bool linkedList<T>::deleteStart()
 template <typename T>
 bool linkedList<T>::deleteAfter(const T &previousElement,T &deletedElement)
 {
+    if( this->isEmpty() )
+        return false;
+
     node<T>* previous=head;
     while( (previous->data) != previousElement )
     {
@@ -143,6 +146,9 @@ bool linkedList<T>::deleteAfter(const T &previousElement,T &deletedElement)
 template <typename T>
 bool linkedList<T>::deleteAfter(const T &previousElement)
 {
+    if( this->isEmpty() )
+        return false;
+
     node<T>* previous=head;
     while( (previous->data) != previousElement )
     {
