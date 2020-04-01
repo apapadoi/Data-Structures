@@ -2,6 +2,21 @@
 #include "circularList.h"
 
 template <typename T>
+circularList<T>::~circularList()
+{
+    if( this->head->next == this->head )
+    {
+        this->head->next=NULL;
+    }
+
+    node<T>* current=this->head->next;
+    while( current->next != this->head )
+        current=current->next;
+    
+    current->next=NULL;
+}
+
+template <typename T>
 bool circularList<T>::insertStart(const T&new_element)
 {
     node<T>* newNode=new node<T>(new_element);
@@ -34,8 +49,8 @@ bool circularList<T>::insertAfter(const T &previousElement,const T &new_element)
 {
     if( linkedList<T>::insertAfter(previousElement,new_element) )
     {
-        if( head->next=NULL )
-            head->next=this->head;
+        if( this->head->next=NULL )
+            this->head->next=this->head;
         
         return true;
     }
@@ -152,7 +167,7 @@ bool circularList<T>::_delete(const T &element)
         return true;
     }
 
-    if( head->data == element )//if the element is in the first "position" of the list
+    if( this->head->data == element )//if the element is in the first "position" of the list
     {
         node<T>* current=this->head;
         node<T>* last=this->head->next;
@@ -181,4 +196,84 @@ bool circularList<T>::_delete(const T &element)
     *previous=current->next;
     delete current;
     return true;
+}
+
+template <typename T>
+bool circularList<T>::deleteEnd(T &deletedElement)
+{
+    if( this->isEmpty() )
+        return false;
+
+    if( this->head->next == this->head )// list has only 1 element
+    {
+        deletedElement=this->head->data;
+        delete this->head;
+        this->head=NULL;
+        return true;
+    }
+
+    node<T>* current=this->head;
+    node<T>** previous=&(this->head);
+    while( (current->next) != this->head )
+    {
+        previous=&(current->next);
+        current=current->next;
+    }
+    deletedElement=current->data;
+    *previous=current->next;
+    delete current;
+    return true;
+}
+
+template <typename T>
+bool circularList<T>::deleteEnd()
+{
+    T temp;
+    if ( circularList::deleteEnd(temp) )
+        return true;
+
+    return false;
+}
+
+template <typename T>
+void circularList<T>::print() const
+{
+    node<T>* current=this->head;
+    
+    if( !( this->isEmpty() ) )
+    {
+        std::cout<<current->data<<" ";
+
+        current=current->next;
+        while ( current != this->head )
+        {
+            std::cout<<current->data<<" ";
+            current=current->next;
+        }
+    }
+}
+
+template <typename T>
+bool circularList<T>::getData(int elementIndex,T &element) const
+{
+    if( element<0 || this->isEmpty() )
+        return false;
+    else
+    {
+        if(!elementIndex)
+        {
+            element=this->head->data;
+            return true;
+        }
+
+        node<T>* current=this->head->next;
+        for(int i=1;i<elementIndex;i++)
+        {
+            current=current->next;
+            if( current == this->head )
+                return false;
+        }
+        element=current->data;
+        return true;
+    }
 }

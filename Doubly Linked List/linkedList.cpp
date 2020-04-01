@@ -239,7 +239,7 @@ void linkedList<T>::print() const
 template <typename T>
 bool linkedList<T>::getData(int elementIndex,T &element) const
 {
-    if(elementIndex<0)
+    if(elementIndex<0 || this->isEmpty() )
         return false;
     else
     {
